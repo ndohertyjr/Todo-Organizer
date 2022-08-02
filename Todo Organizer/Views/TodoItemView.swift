@@ -8,22 +8,40 @@
 import SwiftUI
 
 struct TodoItemView: View {
-    let todoTitle: String
-    let todoDescription: String
+    let currentTodo: Todo
+    let todoListViewModel: TodoListViewModel
     
     var body: some View {
         VStack {
-            Text("\(todoTitle)")
-                .font(.headline)
-                .frame(minWidth: 50, idealWidth: 200, maxWidth: Constants.screenDimensions.screenWidth, minHeight: 100, idealHeight: 150, maxHeight: 200, alignment: .top)
             Section(content: {
-            Divider()
-            Text(todoDescription)
+                Text("\(currentTodo.title)")
+                    .font(.system(size: 40))
+                    .padding(10)
+                    .frame(minWidth: 50, idealWidth: 200, maxWidth: Constants.screenDimensions.screenWidth, minHeight: 100, idealHeight: 150, maxHeight: 200, alignment: .center)
+                Divider()
+            })
+            
+            Section(content: {
+           
+                Text(currentTodo.body)
                 .font(.body)
-            }, header: {
-                
-                Text("Todo Description:")
-
+            })
+            Spacer()
+            Section(content: {
+                Button(action: {
+                    todoListViewModel.toggleCompleted(for: currentTodo)
+                }, label: {
+                    RoundedRectangle(cornerRadius: 50)
+                        .overlay(Text(currentTodo.isComplete ? "Completed!" : "Press to mark completed.")
+                            .font(.body)
+                            .foregroundColor(.black)
+                            )
+                            
+                        .frame(maxWidth: .infinity, maxHeight: Constants.screenDimensions.screenHeight / 10)
+                })
+                .padding()
+                .foregroundColor(currentTodo.isComplete ? .green : .red)
+                .shadow(color: .black, radius: 10, x: 10, y: 10)
             })
         }
         
@@ -32,6 +50,6 @@ struct TodoItemView: View {
 
 struct TodoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItemView(todoTitle: "Test", todoDescription: "Test Body")
+        TodoItemView(currentTodo: Todo(title: "Test", body: "Test body", isComplete: false), todoListViewModel: TodoListViewModel())
     }
 }

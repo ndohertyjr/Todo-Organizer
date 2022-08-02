@@ -24,10 +24,14 @@ struct TodoListView: View {
                 Section{
                     ForEach(todoListViewModel.itemsArray, id: \.id) {item in
                         NavigationLink{
-                            TodoItemView(todoTitle: item.title, todoDescription: item.body)
+                            TodoItemView(currentTodo: item, todoListViewModel: todoListViewModel)
                         } label: {
                             HStack {
-                                Label(item.title, systemImage: "doc.plaintext.fill")
+                                Image(systemName: item.isComplete ? "checkmark" : "doc.plaintext.fill")
+                                    .foregroundColor(item.isComplete ? .green : .red)
+                                    .padding(3)
+                                Text(item.title)
+                                    .font(.system(.title))
                                 .padding()
                             }
                             
@@ -36,7 +40,7 @@ struct TodoListView: View {
                 } header: {
                     Text("Todo Total: \(todoListViewModel.itemsArray.count)")
                 }
-                .listItemTint(.green)
+                //.listItemTint(item.isComplete ? .green : .red)
             }
             .listStyle(.insetGrouped)
             .listRowSeparator(.visible)

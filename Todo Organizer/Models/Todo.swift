@@ -11,4 +11,6 @@ struct Todo: Identifiable, Hashable, Codable {
     private(set) var id = UUID()
     let title: String
     let body: String
+    var isComplete: Bool
+    
 }

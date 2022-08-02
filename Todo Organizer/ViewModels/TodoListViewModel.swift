@@ -20,8 +20,8 @@ class TodoListViewModel: ObservableObject {
     }
     
     func addTodoItem(title: String, body: String) {
-        itemsArray.append(Todo(title:  title, body: body))
-        // Custom object encoded to store to defaults
+        itemsArray.append(Todo(title:  title, body: body, isComplete: false))
+        // Custom object encoded to store to defaultsa
         if let safeData = dataHandler.encodeTodoData(for: itemsArray) {
             
             defaults.set(safeData, forKey: Constants.persistentStorage.userDefaults.todoListArray)
@@ -48,14 +48,26 @@ class TodoListViewModel: ObservableObject {
                 print("Error retrieving saved Todo List. \(error)")
             }
         }
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
+        
+    func toggleCompleted(for todo: Todo) {
+        if var selectedTodo = itemsArray.firstIndex(where: {$0.title == todo.title}) {
+            
+            itemsArray[selectedTodo].isComplete.toggle()
+            
+            print("\(itemsArray[selectedTodo].title) has been marked \(itemsArray[selectedTodo].isComplete)")
+        } else {
+            print("Could not locate Todo to toggle completion")
+                
+        }
+    }
 }
+    
+    
+    
+    
+    
+    
+    
+    
+
