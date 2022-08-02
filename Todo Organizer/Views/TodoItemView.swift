@@ -20,9 +20,7 @@ struct TodoItemView: View {
                     .frame(minWidth: 50, idealWidth: 200, maxWidth: Constants.screenDimensions.screenWidth, minHeight: 100, idealHeight: 150, maxHeight: 200, alignment: .center)
                 Divider()
             })
-            
             Section(content: {
-           
                 Text(currentTodo.body)
                 .font(.body)
             })
@@ -35,8 +33,7 @@ struct TodoItemView: View {
                         .overlay(Text(currentTodo.isComplete ? "Completed!" : "Press to mark completed.")
                             .font(.body)
                             .foregroundColor(.black)
-                            )
-                            
+                            )            
                         .frame(maxWidth: .infinity, maxHeight: Constants.screenDimensions.screenHeight / 10)
                 })
                 .padding()

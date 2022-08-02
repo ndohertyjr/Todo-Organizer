@@ -12,5 +12,4 @@ struct Todo: Identifiable, Hashable, Codable {
     let title: String
     let body: String
     var isComplete: Bool
-    
 }

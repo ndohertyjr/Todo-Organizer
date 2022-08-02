@@ -24,6 +24,7 @@ struct AddTodo: View {
 
     var body: some View {
         ZStack(alignment: .center) {
+            Color.black.opacity(showPopup ? 1.0 : 0).edgesIgnoringSafeArea(.all)
             if showPopup {
                 Color.black.opacity(showPopup ? 1.0 : 0).edgesIgnoringSafeArea(.all)
                 VStack(alignment: .center, spacing: 0) {
@@ -97,7 +98,7 @@ struct AddTodo: View {
                 .background(Color.gray)
             }
         }
-        //.frame(width: Constants.screenDimensions.screenWidth, height: Constants.screenDimensions.screenHeight, alignment: .center)
+        
     }
     
     func clearTodoItem() {

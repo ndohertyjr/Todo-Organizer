@@ -23,7 +23,9 @@ struct Constants {
     }
     
     struct persistentStorage {
-        struct userDefaults {
+        static let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+        
+        struct arrayModels {
             static let todoListArray = "TodoListArray"
         }
     }

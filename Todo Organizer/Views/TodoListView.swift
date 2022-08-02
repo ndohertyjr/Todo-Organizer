@@ -15,6 +15,7 @@ struct TodoListView: View {
     @State private var editMode: EditMode = .inactive
     @State private var isEditing = false
     @State private var newTodoText: String = ""
+    @State private var deleteIsHovered: Bool = false
 
    
     
@@ -31,10 +32,17 @@ struct TodoListView: View {
                                     .foregroundColor(item.isComplete ? .green : .red)
                                     .padding(3)
                                 Text(item.title)
-                                    .font(.system(.title))
+                                    .font(.system(size: 24))
                                 .padding()
                             }
                             
+                        }
+                    }
+                    .contextMenu {
+                        Button {
+                            print("Delete Item")
+                        } label: {
+                            Text("Delete me")
                         }
                     }
                 } header: {
