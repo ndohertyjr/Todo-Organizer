@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct Todo_OrganizerApp: App {
+
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
         }
     }
 }
