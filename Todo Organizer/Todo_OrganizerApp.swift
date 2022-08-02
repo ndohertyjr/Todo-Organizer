@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Todo_OrganizerApp: App {
-
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {

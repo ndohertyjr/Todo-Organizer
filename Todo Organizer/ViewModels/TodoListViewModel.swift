@@ -10,39 +10,52 @@ import Foundation
 class TodoListViewModel: ObservableObject {
     
     @Published var itemsArray = [Todo]()
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
-    
+    let dataHandler = DataHandler()
     let defaults = UserDefaults.standard
     
     init() {
         itemsArray = []
-        
+        getSavedTodoList()
             
     }
     
     func addTodoItem(title: String, body: String) {
-        itemsArray.append(Todo(title:  "Test", body: "Body!"))
-        
-        encodeTodoData(itemsArray)
-        //defaults.set(itemsArray, forKey: "TodoListArray")
-    }
-    
-    // Needed to save custom object to UserDefaults
-    func encodeTodoData(_ dataToConvert: [Todo]) -> Data? {
-        var encodedData: Data?
-        do {
-            try encodedData = encoder.encode(dataToConvert)
-        } catch  {
-            print("Error encoding data")
+        itemsArray.append(Todo(title:  title, body: body))
+        // Custom object encoded to store to defaults
+        if let safeData = dataHandler.encodeTodoData(for: itemsArray) {
+            
+            defaults.set(safeData, forKey: Constants.persistentStorage.userDefaults.todoListArray)
+        }
+        else {
+            print("Error adding todo to list!  Data not encoded correctly.")
         }
         
-        return encodedData!
     }
     
-    func decodeTodoData() -> [Todo]{
+    func getSavedTodoList(){
+        var savedData: [Todo]?
+        
+        if let data = defaults.data(forKey: Constants.persistentStorage.userDefaults.todoListArray) {
+            do {
+                savedData = try dataHandler.decodeTodoData(for: data)
+                
+                if savedData != nil {
+                    itemsArray = savedData!
+                } else {
+                    print("Data returned is nil.")
+                }
+            } catch {
+                print("Error retrieving saved Todo List. \(error)")
+            }
+        }
         
     }
+    
+    
+    
+    
+    
+    
     
     
 }

@@ -11,6 +11,10 @@
 		3F44B4C828984535005C748D /* AddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44B4C628984535005C748D /* AddTodo.swift */; };
 		3F44B4CA28985966005C748D /* TodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44B4C928985966005C748D /* TodoItemView.swift */; };
 		3F44B4CB28985966005C748D /* TodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F44B4C928985966005C748D /* TodoItemView.swift */; };
+		3F9043E4289955300092C514 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9043E3289955300092C514 /* DataHandler.swift */; };
+		3F9043E5289955300092C514 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9043E3289955300092C514 /* DataHandler.swift */; };
+		3F9043E728995F5F0092C514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9043E628995F5F0092C514 /* AppDelegate.swift */; };
+		3F9043E828995F5F0092C514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9043E628995F5F0092C514 /* AppDelegate.swift */; };
 		3FCDC219289433EC0057024B /* Todo_OrganizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCDC218289433EC0057024B /* Todo_OrganizerApp.swift */; };
 		3FCDC21B289433EC0057024B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCDC21A289433EC0057024B /* MainView.swift */; };
 		3FCDC21D289433EC0057024B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FCDC21C289433EC0057024B /* Assets.xcassets */; };
@@ -49,6 +53,8 @@
 /* Begin PBXFileReference section */
 		3F44B4C628984535005C748D /* AddTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodo.swift; sourceTree = "<group>"; };
 		3F44B4C928985966005C748D /* TodoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemView.swift; sourceTree = "<group>"; };
+		3F9043E3289955300092C514 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		3F9043E628995F5F0092C514 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FCDC215289433EC0057024B /* Todo Organizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Todo Organizer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FCDC218289433EC0057024B /* Todo_OrganizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo_OrganizerApp.swift; sourceTree = "<group>"; };
 		3FCDC21A289433EC0057024B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -180,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				3FCDC249289442B20057024B /* Constants.swift */,
+				3F9043E3289955300092C514 /* DataHandler.swift */,
+				3F9043E628995F5F0092C514 /* AppDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -318,9 +326,11 @@
 				3FCDC219289433EC0057024B /* Todo_OrganizerApp.swift in Sources */,
 				3F44B4C728984535005C748D /* AddTodo.swift in Sources */,
 				3FCDC250289448810057024B /* TodoListView.swift in Sources */,
+				3F9043E4289955300092C514 /* DataHandler.swift in Sources */,
 				3FCDC246289441AE0057024B /* TodoListViewModel.swift in Sources */,
 				3F44B4CA28985966005C748D /* TodoItemView.swift in Sources */,
 				3FCDC24A289442B20057024B /* Constants.swift in Sources */,
+				3F9043E728995F5F0092C514 /* AppDelegate.swift in Sources */,
 				3FCDC24D289444FB0057024B /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +343,8 @@
 				3FCDC247289441AE0057024B /* TodoListViewModel.swift in Sources */,
 				3FCDC251289448810057024B /* TodoListView.swift in Sources */,
 				3FCDC24B289442B20057024B /* Constants.swift in Sources */,
+				3F9043E828995F5F0092C514 /* AppDelegate.swift in Sources */,
+				3F9043E5289955300092C514 /* DataHandler.swift in Sources */,
 				3FCDC24E289444FB0057024B /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
