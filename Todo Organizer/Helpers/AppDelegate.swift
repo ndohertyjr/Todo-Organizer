@@ -12,6 +12,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
        
+        print("Simulator directory:")
+        print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last! as String)
         print("Current user defaults:")
         for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
             print("\(key) = \(value)")

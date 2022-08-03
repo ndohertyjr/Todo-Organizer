@@ -47,6 +47,6 @@ struct TodoItemView: View {
 
 struct TodoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItemView(currentTodo: Todo(title: "Test", body: "Test body", isComplete: false), todoListViewModel: TodoListViewModel())
+        TodoItemView(currentTodo: Todo(title: "Test", body: "Test body", isComplete: false, timestamp: Date()), todoListViewModel: TodoListViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
     }
 }

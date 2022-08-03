@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.managedObjectContext) var context
     
     var body: some View {
         NavigationView {
             VStack {
-                TodoListView(todoListViewModel: TodoListViewModel())
+                TodoListView(todoListViewModel: TodoListViewModel(coreDataContext: context))
             }
         }
         

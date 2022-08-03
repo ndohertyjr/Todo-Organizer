@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import CoreData
 
 protocol DataEncoder {
     var jsonEncoder: JSONEncoder { get set }
@@ -75,5 +75,10 @@ struct DataHandler: DataEncoder {
             return nil
         }
     }
+    
+}
+
+// MARK: Core Data extension
+extension DataHandler {
     
 }

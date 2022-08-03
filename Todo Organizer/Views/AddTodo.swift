@@ -110,6 +110,6 @@ struct AddTodo: View {
 struct AddTodo_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddTodo(showPopup: .constant(true), todoListViewModel: TodoListViewModel())
+        AddTodo(showPopup: .constant(true), todoListViewModel: TodoListViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
     }
 }
