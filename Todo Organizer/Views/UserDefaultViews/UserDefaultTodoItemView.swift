@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TodoItemView: View {
+struct UserDefaultTodoItemView: View {
     let currentTodo: Todo
-    let todoListViewModel: TodoListViewModel
+    let todoListViewModel: UserDefaultTodoViewModel
     
     var body: some View {
         VStack {
@@ -47,6 +47,6 @@ struct TodoItemView: View {
 
 struct TodoItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItemView(currentTodo: Todo(title: "Test", body: "Test body", isComplete: false, timestamp: Date()), todoListViewModel: TodoListViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
+        UserDefaultTodoItemView(currentTodo: Todo(title: "Test", body: "Test body", isComplete: false, timestamp: Date()), todoListViewModel: UserDefaultTodoViewModel())
     }
 }

@@ -1,50 +1,48 @@
 //
-//  TodoListView.swift
+//  CoreDataTodoListViews.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 7/29/22.
+//  Created by user220431 on 8/4/22.
 //
 
 import SwiftUI
 
-
-struct TodoListView: View {
-    @ObservedObject var todoListViewModel: TodoListViewModel
+struct CoreDataTodoListViews: View {
+    @ObservedObject var todoListViewModel: CoreDataTodoViewModel
     @State private var showAddTodoPopup: Bool = false
     @State private var selectedItem: Int?
     @State private var editMode: EditMode = .inactive
     @State private var isEditing = false
     @State private var newTodoText: String = ""
     @State private var deleteIsHovered: Bool = false
-
-   
     
+
     var body: some View {
         ZStack {
             List(selection: $selectedItem) {
                 Section{
-                    ForEach(todoListViewModel.itemsArray, id: \.id) {item in
+                    ForEach(todoListViewModel.itemsArray.indices, id:\.self) {index in
                         NavigationLink{
-                            TodoItemView(currentTodo: item, todoListViewModel: todoListViewModel)
+                            CoreDataTodoItemView(currentTodo: todoListViewModel.itemsArray[index], todoListViewModel: todoListViewModel)
                         } label: {
                             HStack {
-                                Image(systemName: item.isComplete ? "checkmark" : "doc.plaintext.fill")
-                                    .foregroundColor(item.isComplete ? .green : .red)
+                                Image(systemName: todoListViewModel.itemsArray[index].isComplete ? "checkmark" : "doc.plaintext.fill")
+                                    .foregroundColor(todoListViewModel.itemsArray[index].isComplete ? .green : .red)
                                     .padding(3)
-                                Text(item.title)
+                                Text(todoListViewModel.itemsArray[index].title!)
                                     .font(.system(size: 24))
                                 .padding()
                             }
-                            
+                            .contextMenu {
+                                Button {
+                                    todoListViewModel.deleteItem(at: index)
+                                } label: {
+                                    Text("Delete me")
+                                }
+                            }
                         }
                     }
-                    .contextMenu {
-                        Button {
-                            print("Delete Item")
-                        } label: {
-                            Text("Delete me")
-                        }
-                    }
+                    
                 } header: {
                     Text("Todo Total: \(todoListViewModel.itemsArray.count)")
                 }
@@ -54,9 +52,9 @@ struct TodoListView: View {
             .listRowSeparator(.visible)
             .navigationTitle(Constants.appName)
             .navigationBarTitleDisplayMode(.inline)
-            .environment(\.editMode, self.$editMode.animation(.spring()))
+            .environment(\.editMode, $editMode)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showAddTodoPopup.toggle()
                     }, label: {
@@ -77,15 +75,12 @@ struct TodoListView: View {
                     
             }
         }
-        AddTodo(showPopup: $showAddTodoPopup, todoListViewModel: todoListViewModel)
+        CoreDataAddTodo(showPopup: $showAddTodoPopup, todoListViewModel: todoListViewModel)
     }
         
 }
- 
-
-
-struct TodoListView_Previews: PreviewProvider {
+struct CoreDataTodoListViews_Previews: PreviewProvider {
     static var previews: some View {
-        TodoListView(todoListViewModel: TodoListViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
+        CoreDataTodoListViews(todoListViewModel: CoreDataTodoViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
     }
 }

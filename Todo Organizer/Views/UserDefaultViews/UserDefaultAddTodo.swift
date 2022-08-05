@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddTodo: View {
+struct UserDefaultAddTodo: View {
     
     enum Field: Hashable {
         case addTodoTitle
@@ -19,7 +19,7 @@ struct AddTodo: View {
     @State private var addTodoTitle: String = ""
     @State private var addTodoBody: String = ""
     @FocusState private var focusedField: Field?
-    @ObservedObject var todoListViewModel: TodoListViewModel
+    @ObservedObject var todoListViewModel: UserDefaultTodoViewModel
     
 
     var body: some View {
@@ -107,9 +107,9 @@ struct AddTodo: View {
     }
 }
 
-struct AddTodo_Previews: PreviewProvider {
+struct UserDefaultAddTodo_Previews: PreviewProvider {
 
     static var previews: some View {
-        AddTodo(showPopup: .constant(true), todoListViewModel: TodoListViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
+        UserDefaultAddTodo(showPopup: .constant(true), todoListViewModel: UserDefaultTodoViewModel())
     }
 }
