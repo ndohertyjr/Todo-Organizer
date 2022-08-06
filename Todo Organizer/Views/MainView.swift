@@ -31,23 +31,11 @@ struct MainView: View {
                 } label: {
                     Label("Core Data", systemImage: "tablecells")
                 }
-
+                
             }
         }
         
     }
-//
-//    @ViewBuilder
-//    func viewSelectorForStorage() -> some View {
-//        switch currentSelection {
-//            case .userDefault:
-//                UserDefaultTodoListView(todoListViewModel: UserDefaultTodoViewModel())
-//            case .pList:
-//                PListTodoListView(todoListViewModel: PListTodoViewModel())
-//            case .coreData:
-//                CoreDataTodoListViews(todoListViewModel: CoreDataTodoViewModel(coreDataContext: context))
-//        }
-//    }
 }
 
 struct ContentView_Previews: PreviewProvider {

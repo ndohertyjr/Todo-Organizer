@@ -24,7 +24,7 @@ struct CoreDataTodoItemView: View {
             })
             Section(content: {
                 Text(currentTodo.body ?? "Description failed to load")
-                .font(.body)
+                    .font(.body)
             })
             Spacer()
             Section(content: {
@@ -35,7 +35,7 @@ struct CoreDataTodoItemView: View {
                         .overlay(Text(currentTodo.isComplete ? "Completed!" : "Press to mark completed.")
                             .font(.body)
                             .foregroundColor(.black)
-                            )
+                        )
                         .frame(maxWidth: .infinity, maxHeight: Constants.screenDimensions.screenHeight / 10)
                 })
                 .padding()
@@ -54,7 +54,7 @@ struct CoreDataTodoListView_Previews: PreviewProvider {
         item.body = "Test description"
         item.isComplete = false
         item.timestamp = Date()
-     
+        
         return CoreDataTodoItemView(currentTodo: item, todoListViewModel: CoreDataTodoViewModel(coreDataContext: context))
             .environment(\.managedObjectContext, context)
     }

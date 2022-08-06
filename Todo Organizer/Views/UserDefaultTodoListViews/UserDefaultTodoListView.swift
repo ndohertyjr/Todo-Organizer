@@ -1,14 +1,15 @@
 //
-//  PListTodoListView.swift
+//  TodoListView.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/4/22.
+//  Created by user220431 on 7/29/22.
 //
 
 import SwiftUI
 
-struct PListTodoListView: View {
-    @ObservedObject var todoListViewModel: PListTodoViewModel
+
+struct UserDefaultTodoListView: View {
+    @ObservedObject var todoListViewModel: UserDefaultTodoViewModel
     @State private var showAddTodoPopup: Bool = false
     @State private var selectedItem: Int?
     @State private var editMode: EditMode = .inactive
@@ -39,7 +40,7 @@ struct PListTodoListView: View {
                     Section{
                         ForEach(todoListViewModel.itemsArray.indices, id: \.self) {index in
                             NavigationLink{
-                                PListTodoItemView(currentTodo: todoListViewModel.itemsArray[index], todoListViewModel: todoListViewModel)
+                                UserDefaultTodoItemView(currentTodo: todoListViewModel.itemsArray[index], todoListViewModel: todoListViewModel)
                             } label: {
                                 HStack {
                                     Image(systemName: todoListViewModel.itemsArray[index].isComplete ? "checkmark" : "doc.plaintext.fill")
@@ -67,9 +68,10 @@ struct PListTodoListView: View {
                 }
                 .listStyle(.insetGrouped)
                 .listRowSeparator(.visible)
-                .navigationTitle(Constants.appName + " - Property List")
+                .navigationTitle(Constants.appName + " - User Defaults")
                 .navigationBarTitleDisplayMode(.inline)
-                .environment(\.editMode, self.$editMode)
+                // FIXME: Edit button not working
+                .environment(\.editMode, $editMode)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
@@ -89,11 +91,9 @@ struct PListTodoListView: View {
                             Text("Edit")
                         })
                     }
-                    
                 }
-                
             }
-            PListAddTodo(showPopup: $showAddTodoPopup, todoListViewModel: todoListViewModel)
+            UserDefaultAddTodo(showPopup: $showAddTodoPopup, todoListViewModel: todoListViewModel)
             
         }
         
@@ -101,8 +101,10 @@ struct PListTodoListView: View {
     
 }
 
-struct PListTodoListView_Previews: PreviewProvider {
+
+
+struct UserDefaultTodoListView_Previews: PreviewProvider {
     static var previews: some View {
-        PListTodoListView(todoListViewModel: PListTodoViewModel())
+        UserDefaultTodoListView(todoListViewModel: UserDefaultTodoViewModel())
     }
 }

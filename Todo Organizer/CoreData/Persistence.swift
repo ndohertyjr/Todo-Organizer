@@ -12,7 +12,7 @@ struct PersistenceController {
     let logPrefix = "[PersistenceController] "
     
     static let shared = PersistenceController()
-
+    
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
@@ -30,9 +30,9 @@ struct PersistenceController {
         }
         return result
     }()
-
+    
     let container: NSPersistentContainer
-
+    
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "TodoDataModel")
         if inMemory {

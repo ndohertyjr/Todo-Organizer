@@ -37,7 +37,7 @@ struct DataHandler: DataEncoder {
             return nil
         }
     }
-        
+    
     func decodeTodoDataForJSON(for dataToConvert: Data) -> [Todo]?{
         var decodedData: [Todo]?
         

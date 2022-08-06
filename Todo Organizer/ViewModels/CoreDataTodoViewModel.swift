@@ -6,16 +6,16 @@
 //
 
 /*
-    Storage options overview
-    UserDefaults: default storage use for very small bits of data (top score, nickname, music starts on/off, etc(
-                  Should not be used for storing objects generally, mostly primitive types
-    Codable: P list storage.  A great way to freeze custom object but loading requires loading the entire list every time.
-             P lists should be small (< 100kb) and specific to minimize load times.
-    Keychain: Save small bits of data securely using this API.  Apple handles most of the security
-    Databases:
-        SQLite: Lightweight db.  Look into FMDB as a wrapper to utilize SQLite
-        Core Data: Object oriented db.  Can use SQLite but adds a ton of functionality for monitoring, manipulation, etc
-        Realm: Faster, open source option instead of Core Data.
+ Storage options overview
+ UserDefaults: default storage use for very small bits of data (top score, nickname, music starts on/off, etc(
+ Should not be used for storing objects generally, mostly primitive types
+ Codable: P list storage.  A great way to freeze custom object but loading requires loading the entire list every time.
+ P lists should be small (< 100kb) and specific to minimize load times.
+ Keychain: Save small bits of data securely using this API.  Apple handles most of the security
+ Databases:
+ SQLite: Lightweight db.  Look into FMDB as a wrapper to utilize SQLite
+ Core Data: Object oriented db.  Can use SQLite but adds a ton of functionality for monitoring, manipulation, etc
+ Realm: Faster, open source option instead of Core Data.
  */
 
 import Foundation
@@ -62,7 +62,7 @@ class CoreDataTodoViewModel: ObservableObject {
         let request: NSFetchRequest<CoreDataTodo> = CoreDataTodo.fetchRequest()
         do {
             print(logPrefix + "Fetching Todo List from Core Data")
-    
+            
             if try context.count(for: request) == 0 {
                 itemsArray = []
             }
@@ -78,19 +78,19 @@ class CoreDataTodoViewModel: ObservableObject {
     
     // MARK: Update Item Section
     func toggleCompleted(for todo: CoreDataTodo) {
-       
+        
         if let selectedTodo = itemsArray.firstIndex(where: {$0.title == todo.title}) {
             itemsArray[selectedTodo].isComplete.toggle()
             print(logPrefix + "\(String(describing: itemsArray[selectedTodo].title)) has been marked \(itemsArray[selectedTodo].isComplete)")
             saveTodoChangesToStorage()
         } else {
             print(logPrefix + "Could not locate Todo to toggle completion")
-                    
+            
         }
         
         
     }
-
+    
     // MARK: Delete Item Section
     func deleteItem(at todoIndex: Int) {
         print(logPrefix + "Deleting item at index \(todoIndex)")

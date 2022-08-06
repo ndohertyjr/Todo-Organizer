@@ -12,7 +12,7 @@ struct CoreDataAddTodo: View {
     enum Field: Hashable {
         case addTodoTitle
         case addTodoBody
-       
+        
     }
     
     @Binding var showPopup: Bool
@@ -21,7 +21,7 @@ struct CoreDataAddTodo: View {
     @FocusState private var focusedField: Field?
     @ObservedObject var todoListViewModel: CoreDataTodoViewModel
     
-
+    
     var body: some View {
         ZStack(alignment: .center) {
             Color.black.opacity(showPopup ? 1.0 : 0).edgesIgnoringSafeArea(.all)
@@ -33,7 +33,7 @@ struct CoreDataAddTodo: View {
                             .frame(maxWidth: .infinity, maxHeight: 20, alignment: .center)
                             .foregroundColor(Color.black)
                             .font(.largeTitle)
-                            
+                                
                             .padding()
                         ) {
                             TextField(text: $addTodoTitle) {
@@ -41,60 +41,60 @@ struct CoreDataAddTodo: View {
                             }
                             .focused($focusedField, equals: .addTodoTitle)
                             .padding()
-                
+                            
                             TextField(text: $addTodoBody) {
                                 Text("Todo Description:")
                             }
                             .focused($focusedField, equals: .addTodoBody)
                             .padding()
                         }
-                       
+                        
                     }
                     .border(Color.green, width: 2)
                     HStack {
-                    Button(action: {
-                        if addTodoTitle.isEmpty {
-                            focusedField = .addTodoTitle
-                            print("title missing")
-                        }
-                        else if addTodoBody.isEmpty {
-                            focusedField = .addTodoBody
-                            print("body missing")
-                        } else {
-                            print("Saved!")
+                        Button(action: {
+                            if addTodoTitle.isEmpty {
+                                focusedField = .addTodoTitle
+                                print("title missing")
+                            }
+                            else if addTodoBody.isEmpty {
+                                focusedField = .addTodoBody
+                                print("body missing")
+                            } else {
+                                print("Saved!")
+                                withAnimation(.linear(duration: 0.3)) {
+                                    todoListViewModel.addTodoItem(title: addTodoTitle, body: addTodoBody)
+                                    clearTodoItem()
+                                    showPopup = false
+                                }
+                            }
+                            
+                        }, label: {
+                            Text("Save")
+                                .frame( alignment: .center
+                                )
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                        .border(Color.black, width: 1)
+                        
+                        .frame(width: 200, height: 50, alignment: .center)
+                        
+                        Button(action: {
+                            print("Quit")
                             withAnimation(.linear(duration: 0.3)) {
-                                todoListViewModel.addTodoItem(title: addTodoTitle, body: addTodoBody)
                                 clearTodoItem()
                                 showPopup = false
                             }
-                        }
-                        
-                    }, label: {
-                        Text("Save")
-                            .frame( alignment: .center
-                            )
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .border(Color.black, width: 1)
-        
-                    .frame(width: 200, height: 50, alignment: .center)
-                 
-                    Button(action: {
-                        print("Quit")
-                        withAnimation(.linear(duration: 0.3)) {
-                            clearTodoItem()
-                            showPopup = false
-                        }
-                    }, label: {
-                        Text("Quit")
-                    })
-                    .buttonStyle(PlainButtonStyle())
-                    .border(Color.black, width: 1)
-                    .frame(width: 200, height: 20, alignment: .center)
+                        }, label: {
+                            Text("Quit")
+                        })
+                        .buttonStyle(PlainButtonStyle())
+                        .border(Color.black, width: 1)
+                        .frame(width: 200, height: 20, alignment: .center)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width - 10, height: UIScreen.main.bounds.height / 2, alignment: .center)
-               
+                
                 .background(Color.gray)
             }
         }
@@ -108,7 +108,7 @@ struct CoreDataAddTodo: View {
 }
 
 struct CoreDataAddTodo_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         CoreDataAddTodo(showPopup: .constant(true), todoListViewModel: CoreDataTodoViewModel(coreDataContext: PersistenceController.shared.container.viewContext))
     }

@@ -192,7 +192,7 @@
 			children = (
 				3FCDC21A289433EC0057024B /* MainView.swift */,
 				3FECFF9D289C0622008F9610 /* CoreDataTodoListViews */,
-				3FECFF9B289C0589008F9610 /* UserDefaultViews */,
+				3FECFF9B289C0589008F9610 /* UserDefaultTodoListViews */,
 				3FECFF9C289C059B008F9610 /* PListTodoListViews */,
 			);
 			path = Views;
@@ -235,14 +235,14 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		3FECFF9B289C0589008F9610 /* UserDefaultViews */ = {
+		3FECFF9B289C0589008F9610 /* UserDefaultTodoListViews */ = {
 			isa = PBXGroup;
 			children = (
 				3F44B4C628984535005C748D /* UserDefaultAddTodo.swift */,
 				3F44B4C928985966005C748D /* UserDefaultTodoItemView.swift */,
 				3FCDC24F289448810057024B /* UserDefaultTodoListView.swift */,
 			);
-			path = UserDefaultViews;
+			path = UserDefaultTodoListViews;
 			sourceTree = "<group>";
 		};
 		3FECFF9C289C059B008F9610 /* PListTodoListViews */ = {

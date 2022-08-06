@@ -22,7 +22,7 @@ struct UserDefaultTodoItemView: View {
             })
             Section(content: {
                 Text(currentTodo.body)
-                .font(.body)
+                    .font(.body)
             })
             Spacer()
             Section(content: {
@@ -33,7 +33,7 @@ struct UserDefaultTodoItemView: View {
                         .overlay(Text(currentTodo.isComplete ? "Completed!" : "Press to mark completed.")
                             .font(.body)
                             .foregroundColor(.black)
-                            )            
+                        )            
                         .frame(maxWidth: .infinity, maxHeight: Constants.screenDimensions.screenHeight / 10)
                 })
                 .padding()

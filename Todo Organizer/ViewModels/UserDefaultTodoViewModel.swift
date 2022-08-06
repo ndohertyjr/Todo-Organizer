@@ -10,21 +10,21 @@ import UIKit
 import CoreData
 
 /*
-    ViewModel to handle the data for the TodoList Views.
-    Shows different potential options for storing data in persistent storage.
-*/
+ ViewModel to handle the data for the TodoList Views.
+ Shows different potential options for storing data in persistent storage.
+ */
 
 /*
-    Storage options overview
-    UserDefaults: default storage use for very small bits of data (top score, nickname, music starts on/off, etc(
-                  Should not be used for storing objects generally, mostly primitive types
-    Codable: P list storage.  A great way to freeze custom object but loading requires loading the entire list every time.
-             P lists should be small (< 100kb) and specific to minimize load times.
-    Keychain: Save small bits of data securely using this API.  Apple handles most of the security
-    Databases:
-        SQLite: Lightweight db.  Look into FMDB as a wrapper to utilize SQLite
-        Core Data: Object oriented db.  Can use SQLite but adds a ton of functionality for monitoring, manipulation, etc
-        Realm: Faster, open source option instead of Core Data.
+ Storage options overview
+ UserDefaults: default storage use for very small bits of data (top score, nickname, music starts on/off, etc(
+ Should not be used for storing objects generally, mostly primitive types
+ Codable: P list storage.  A great way to freeze custom object but loading requires loading the entire list every time.
+ P lists should be small (< 100kb) and specific to minimize load times.
+ Keychain: Save small bits of data securely using this API.  Apple handles most of the security
+ Databases:
+ SQLite: Lightweight db.  Look into FMDB as a wrapper to utilize SQLite
+ Core Data: Object oriented db.  Can use SQLite but adds a ton of functionality for monitoring, manipulation, etc
+ Realm: Faster, open source option instead of Core Data.
  */
 
 class UserDefaultTodoViewModel: ObservableObject {
@@ -41,7 +41,7 @@ class UserDefaultTodoViewModel: ObservableObject {
         addTodoItem(title: "This is your todo list!", body: "Write details of your todo here.")
         loadData()
     }
-
+    
     // MARK: Save Changes Section
     func saveTodoChangesToStorage() {
         // Custom object encoded to store to defaults
@@ -87,7 +87,7 @@ class UserDefaultTodoViewModel: ObservableObject {
                 }
             }
         }
-            
+        
     }
     
     // MARK: Update Item Section
@@ -98,21 +98,23 @@ class UserDefaultTodoViewModel: ObservableObject {
             saveTodoChangesToStorage()
         } else {
             print(logPrefix + "Could not locate Todo to toggle completion")
-                
+            
         }
     }
     
     // MARK: Delete Item Section
-    func deleteItem() {
-        
+    func deleteItem(for todoIndex: Int) {
+        itemsArray.remove(at: todoIndex)
+        saveTodoChangesToStorage()
+        loadData()
     }    
 }
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
 
