@@ -2,7 +2,7 @@
 //  CoreDataTodoViewModel.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/3/22.
+//  Created by Neil Doherty on 8/3/22.
 //
 
 /*
@@ -22,7 +22,7 @@ import Foundation
 import CoreData
 
 class CoreDataTodoViewModel: ObservableObject {
-    let logPrefix = "[UserDefaultTodoListViewModel] "
+    let logPrefix = "[CoreDataTodoListViewModel] "
     @Published var itemsArray = [CoreDataTodo]()
     // Use core data singleton context
     let context: NSManagedObjectContext
@@ -76,6 +76,59 @@ class CoreDataTodoViewModel: ObservableObject {
         }
     }
     
+    // Fetch results by title
+    func searchTodosByTitle(_ searchText: String) {
+        let request: NSFetchRequest<CoreDataTodo> = CoreDataTodo.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchText)
+
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        do {
+            print(logPrefix + "Fetching todos that match title: \(searchText)")
+            itemsArray = try context.fetch(request)
+        } catch {
+            print(logPrefix + "Error fetching items for title: \(searchText)")
+            print("Error: \(error)")
+        }
+    }
+    
+    func findOneTodoByTitle(_ title: String) -> CoreDataTodo? {
+        let request: NSFetchRequest<CoreDataTodo> = CoreDataTodo.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "title == %@", title)
+        
+        do {
+            print(logPrefix + "Fetching todo \(title)")
+            if itemsArray.count == 0 {
+                return nil
+            } else {
+                let returnedTodos = try context.fetch(request)
+                if returnedTodos.count > 0 {
+                    return try context.fetch(request)[0]
+                } else {
+                    return nil
+                }
+            }
+            
+        } catch {
+            print(logPrefix + "Error fetching item \(title)")
+            print("Error: \(error)")
+            return nil
+        }
+    }
+    
+    func validateTodoExists(for todo: String) -> Bool {
+        
+        if let foundTodo = findOneTodoByTitle(todo) {
+            return true
+        } else {
+            return false
+        }
+        
+    }
+    
+    
     // MARK: Update Item Section
     func toggleCompleted(for todo: CoreDataTodo) {
         
@@ -83,6 +136,7 @@ class CoreDataTodoViewModel: ObservableObject {
             itemsArray[selectedTodo].isComplete.toggle()
             print(logPrefix + "\(String(describing: itemsArray[selectedTodo].title)) has been marked \(itemsArray[selectedTodo].isComplete)")
             saveTodoChangesToStorage()
+            loadData()
         } else {
             print(logPrefix + "Could not locate Todo to toggle completion")
             

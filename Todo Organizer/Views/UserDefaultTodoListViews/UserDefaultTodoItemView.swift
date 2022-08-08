@@ -2,7 +2,7 @@
 //  TodoItemView.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/1/22.
+//  Created by Neil Doherty on 8/1/22.
 //
 
 import SwiftUI

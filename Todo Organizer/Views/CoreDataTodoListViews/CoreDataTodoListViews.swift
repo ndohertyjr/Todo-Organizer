@@ -2,7 +2,7 @@
 //  CoreDataTodoListViews.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/4/22.
+//  Created by Neil Doherty on 8/4/22.
 //
 
 import SwiftUI
@@ -18,6 +18,8 @@ struct CoreDataTodoListViews: View {
     @State private var deleteIsHovered: Bool = false
     @State private var searchText: String = ""
     @State private var filteredTodos: [String] = []
+    @Environment(\.isSearching) private var isSearching: Bool
+    @Environment(\.dismissSearch) private var dismissSearch
   
     
     
@@ -29,7 +31,7 @@ struct CoreDataTodoListViews: View {
                     Section{
                         ForEach(todoListViewModel.itemsArray.indices, id:\.self) {index in
                             NavigationLink{
-                                CoreDataTodoItemView(currentTodo: todoListViewModel.itemsArray[index], todoListViewModel: todoListViewModel)
+                                CoreDataTodoItemView(todo: todoListViewModel.itemsArray[index], viewModel: todoListViewModel)
                             } label: {
                                 HStack {
                                     Image(systemName: todoListViewModel.itemsArray[index].isComplete ? "checkmark" : "doc.plaintext.fill")
@@ -87,8 +89,10 @@ struct CoreDataTodoListViews: View {
                     }
                 }
                 .onSubmit(of: .search) {
-                    filterSearch()
+                    
+                    todoListViewModel.searchTodosByTitle(searchText)
                 }
+                
                 
                 
             }

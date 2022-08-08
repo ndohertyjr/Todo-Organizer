@@ -2,7 +2,7 @@
 //  PListTodoViewModel.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/3/22.
+//  Created by Neil Doherty on 8/3/22.
 //
 
 /*
@@ -21,7 +21,7 @@
 import Foundation
 
 class PListTodoViewModel: ObservableObject {
-    let logPrefix = "[UserDefaultTodoListViewModel] "
+    let logPrefix = "[PListTodoListViewModel] "
     @Published var itemsArray = [Todo]()
     let dataFilePath = Constants.persistentStorage.dataFilePath
     

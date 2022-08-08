@@ -2,7 +2,7 @@
 //  CoreDataTodoListView.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/4/22.
+//  Created by Neil Doherty on 8/4/22.
 //
 
 import SwiftUI
@@ -10,9 +10,17 @@ import CoreData
 
 struct CoreDataTodoItemView: View {
     let logPrefix = "[CoreDataTodoItemView] "
-    let currentTodo: CoreDataTodo
+    @State var currentTodo: CoreDataTodo
+    @State var isComplete: Bool = false
     let todoListViewModel: CoreDataTodoViewModel
     
+    init(todo: CoreDataTodo, viewModel: CoreDataTodoViewModel) {
+        self.currentTodo = todo
+        self.todoListViewModel = viewModel
+        self.isComplete = {
+            checkForCompleted()
+        }()
+    }
     var body: some View {
         VStack {
             Section(content: {
@@ -30,20 +38,30 @@ struct CoreDataTodoItemView: View {
             Section(content: {
                 Button(action: {
                     todoListViewModel.toggleCompleted(for: currentTodo)
+                    isComplete = checkForCompleted()
                 }, label: {
                     RoundedRectangle(cornerRadius: 50)
-                        .overlay(Text(currentTodo.isComplete ? "Completed!" : "Press to mark completed.")
+                        .overlay(Text(isComplete ? "Completed!" : "Press to mark completed.")
                             .font(.body)
                             .foregroundColor(.black)
                         )
                         .frame(maxWidth: .infinity, maxHeight: Constants.screenDimensions.screenHeight / 10)
                 })
                 .padding()
-                .foregroundColor(currentTodo.isComplete ? .green : .red)
+                .foregroundColor(isComplete ? .green : .red)
                 .shadow(color: .black, radius: 10, x: 10, y: 10)
             })
         }
         
+    }
+    
+    func checkForCompleted() -> Bool {
+        if let queriedTodo = todoListViewModel.findOneTodoByTitle(currentTodo.title!) {
+            return queriedTodo.isComplete
+        } else {
+            print(logPrefix + "Error determing if todo is complete")
+            return false
+        }
     }
 }
 struct CoreDataTodoListView_Previews: PreviewProvider {
@@ -55,7 +73,7 @@ struct CoreDataTodoListView_Previews: PreviewProvider {
         item.isComplete = false
         item.timestamp = Date()
         
-        return CoreDataTodoItemView(currentTodo: item, todoListViewModel: CoreDataTodoViewModel(coreDataContext: context))
+        return CoreDataTodoItemView(todo: item, viewModel: CoreDataTodoViewModel(coreDataContext: context))
             .environment(\.managedObjectContext, context)
     }
 }

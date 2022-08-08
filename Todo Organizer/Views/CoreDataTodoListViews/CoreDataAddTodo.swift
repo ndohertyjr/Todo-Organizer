@@ -2,13 +2,13 @@
 //  AddTodo.swift
 //  Todo Organizer
 //
-//  Created by user220431 on 8/1/22.
+//  Created by Neil Doherty on 8/1/22.
 //
 
 import SwiftUI
 
 struct CoreDataAddTodo: View {
-    
+    let logPrefix = "[CoreDataAddTodo] "
     enum Field: Hashable {
         case addTodoTitle
         case addTodoBody
@@ -16,6 +16,7 @@ struct CoreDataAddTodo: View {
     }
     
     @Binding var showPopup: Bool
+    @State private var showTitleExistsAlert = false
     @State private var addTodoTitle: String = ""
     @State private var addTodoBody: String = ""
     @FocusState private var focusedField: Field?
@@ -61,11 +62,18 @@ struct CoreDataAddTodo: View {
                                 focusedField = .addTodoBody
                                 print("body missing")
                             } else {
-                                print("Saved!")
-                                withAnimation(.linear(duration: 0.3)) {
-                                    todoListViewModel.addTodoItem(title: addTodoTitle, body: addTodoBody)
-                                    clearTodoItem()
-                                    showPopup = false
+                                var validateTodo =
+                                 todoListViewModel.validateTodoExists(for: addTodoTitle)
+                                if validateTodo == true {
+                                    print(logPrefix + "Todo already exists")
+                                    showTitleExistsAlert = true
+                                } else {
+                                    print("Saved!")
+                                    withAnimation(.linear(duration: 0.3)) {
+                                        todoListViewModel.addTodoItem(title: addTodoTitle, body: addTodoBody)
+                                        clearTodoItem()
+                                        showPopup = false
+                                    }
                                 }
                             }
                             
@@ -76,8 +84,10 @@ struct CoreDataAddTodo: View {
                         })
                         .buttonStyle(PlainButtonStyle())
                         .border(Color.black, width: 1)
-                        
                         .frame(width: 200, height: 50, alignment: .center)
+                        .alert("Todo already exists!", isPresented: $showTitleExistsAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
                         
                         Button(action: {
                             print("Quit")
