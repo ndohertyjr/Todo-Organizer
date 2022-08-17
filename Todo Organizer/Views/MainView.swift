@@ -27,7 +27,7 @@ struct MainView: View {
                     Label("Property List", systemImage: "list.bullet.rectangle.portrait")
                 }
                 NavigationLink {
-                    CoreDataTodoListViews(todoListViewModel: CoreDataTodoViewModel(coreDataContext: context))
+                    CoreDataCategoryView(todoListViewModel: CoreDataTodoViewModel(coreDataContext: context), categoryListViewModel: CategoryViewModel(coreDataContext: context))
                 } label: {
                     Label("Core Data", systemImage: "tablecells")
                 }

@@ -110,6 +110,7 @@ extension CoreDataTodoListViews {
             filteredTodos.append(item.title!)
         }
         if searchText.isEmpty {
+            
             print(logPrefix + "Search field is empty")
         } else {
             filteredTodos = filteredTodos.filter {

@@ -52,6 +52,12 @@
 		3FECFFA7289C179A008F9610 /* CoreDataTodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FECFFA5289C179A008F9610 /* CoreDataTodoItemView.swift */; };
 		3FECFFA9289C4D70008F9610 /* CoreDataAddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FECFFA8289C4D70008F9610 /* CoreDataAddTodo.swift */; };
 		3FECFFAA289C4D70008F9610 /* CoreDataAddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FECFFA8289C4D70008F9610 /* CoreDataAddTodo.swift */; };
+		8C9F323F28AAB07A00F01B6A /* CoreDataCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F323E28AAB07A00F01B6A /* CoreDataCategoryView.swift */; };
+		8C9F324028AAB07A00F01B6A /* CoreDataCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F323E28AAB07A00F01B6A /* CoreDataCategoryView.swift */; };
+		8C9F324228AAB4AB00F01B6A /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F324128AAB4AB00F01B6A /* CategoryViewModel.swift */; };
+		8C9F324328AAB4AB00F01B6A /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F324128AAB4AB00F01B6A /* CategoryViewModel.swift */; };
+		8C9F324528AABB4900F01B6A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F324428AABB4900F01B6A /* AddCategoryView.swift */; };
+		8C9F324628AABB4900F01B6A /* AddCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9F324428AABB4900F01B6A /* AddCategoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +106,9 @@
 		3FECFFA2289C1742008F9610 /* PListTodoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListTodoItemView.swift; sourceTree = "<group>"; };
 		3FECFFA5289C179A008F9610 /* CoreDataTodoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTodoItemView.swift; sourceTree = "<group>"; };
 		3FECFFA8289C4D70008F9610 /* CoreDataAddTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAddTodo.swift; sourceTree = "<group>"; };
+		8C9F323E28AAB07A00F01B6A /* CoreDataCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCategoryView.swift; sourceTree = "<group>"; };
+		8C9F324128AAB4AB00F01B6A /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		8C9F324428AABB4900F01B6A /* AddCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +213,7 @@
 				3FCDC245289441AE0057024B /* UserDefaultTodoViewModel.swift */,
 				3F68E4DB289B7E40008B618D /* CoreDataTodoViewModel.swift */,
 				3F68E4DE289B7E50008B618D /* PListTodoViewModel.swift */,
+				8C9F324128AAB4AB00F01B6A /* CategoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -261,6 +271,8 @@
 				3FECFF9E289C0642008F9610 /* CoreDataTodoListViews.swift */,
 				3FECFFA5289C179A008F9610 /* CoreDataTodoItemView.swift */,
 				3FECFFA8289C4D70008F9610 /* CoreDataAddTodo.swift */,
+				8C9F323E28AAB07A00F01B6A /* CoreDataCategoryView.swift */,
+				8C9F324428AABB4900F01B6A /* AddCategoryView.swift */,
 			);
 			path = CoreDataTodoListViews;
 			sourceTree = "<group>";
@@ -407,7 +419,10 @@
 				3FECFFA6289C179A008F9610 /* CoreDataTodoItemView.swift in Sources */,
 				3FCDC250289448810057024B /* UserDefaultTodoListView.swift in Sources */,
 				3F9043E4289955300092C514 /* DataHandler.swift in Sources */,
+				8C9F323F28AAB07A00F01B6A /* CoreDataCategoryView.swift in Sources */,
+				8C9F324528AABB4900F01B6A /* AddCategoryView.swift in Sources */,
 				3FCDC246289441AE0057024B /* UserDefaultTodoViewModel.swift in Sources */,
+				8C9F324228AAB4AB00F01B6A /* CategoryViewModel.swift in Sources */,
 				3F44B4CA28985966005C748D /* UserDefaultTodoItemView.swift in Sources */,
 				3F68E4DC289B7E40008B618D /* CoreDataTodoViewModel.swift in Sources */,
 				3FCDC24A289442B20057024B /* Constants.swift in Sources */,
@@ -431,6 +446,7 @@
 				3F9043E828995F5F0092C514 /* AppDelegate.swift in Sources */,
 				3F68E4E0289B7E50008B618D /* PListTodoViewModel.swift in Sources */,
 				3F68E4DD289B7E40008B618D /* CoreDataTodoViewModel.swift in Sources */,
+				8C9F324328AAB4AB00F01B6A /* CategoryViewModel.swift in Sources */,
 				3FECFFA1289C173A008F9610 /* UserDefaultTodoItemView.swift in Sources */,
 				3F9043E5289955300092C514 /* DataHandler.swift in Sources */,
 				3FCDC24E289444FB0057024B /* Todo.swift in Sources */,
@@ -446,10 +462,12 @@
 				3FECFFA4289C1742008F9610 /* PListTodoItemView.swift in Sources */,
 				3FECFF9A289C052F008F9610 /* PListTodoListView.swift in Sources */,
 				3FECFFA7289C179A008F9610 /* CoreDataTodoItemView.swift in Sources */,
+				8C9F324628AABB4900F01B6A /* AddCategoryView.swift in Sources */,
 				3FCDC234289433ED0057024B /* Todo_OrganizerUITests.swift in Sources */,
 				3FECFFAA289C4D70008F9610 /* CoreDataAddTodo.swift in Sources */,
 				3F0E4DA4289D347F00FF6668 /* PListAddTodo.swift in Sources */,
 				3FCDC252289448810057024B /* UserDefaultTodoListView.swift in Sources */,
+				8C9F324028AAB07A00F01B6A /* CoreDataCategoryView.swift in Sources */,
 				3F44B4C828984535005C748D /* UserDefaultAddTodo.swift in Sources */,
 				3F44B4CB28985966005C748D /* UserDefaultTodoItemView.swift in Sources */,
 			);
